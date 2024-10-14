@@ -20,3 +20,24 @@ class Book {
         this._isAvailable = available;
     }
 }
+
+//Task 2
+//Create a Section Class
+class Section {
+    constructor(name,book) {
+        this.name = name;
+        this.book = [];
+    }
+
+    addBook(book) {
+        this.students.push(book);
+    }
+
+    getAvailableBooks() {
+        return this.books.filter(book => book.isAvailable).length;
+    }
+
+    listBooks() {
+        ;
+    }
+}
