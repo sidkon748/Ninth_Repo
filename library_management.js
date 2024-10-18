@@ -49,8 +49,10 @@ class Patron {
     }
 
     borrowBook(book) {
-        if (book.borrow()) {
+        if (book.isAvailable) {
+            book._isAvailable = false; 
             this.borrowedBooks.push(book);
+            console.log(`${this.name} borrowed "${book.title}".`);
         } else {
             console.log(`"${book.title}" is currently unavailable.`);
         }
@@ -58,6 +60,22 @@ class Patron {
 
     returnBook(book) {
         
+    }
+}
+
+class VIPPatron extends Patron {
+    constructor(name) {
+        super(name);
+        this.priority = true; 
+    }
+    borrowBook(book) {
+        if (book.isAvailable()) {
+            this.borrowedBooks.push(book);
+            book.borrow();
+            console.log(`${this.name} (VIP) borrowed ${book.title}.`);
+        } else {
+            console.log(`${book.title} is not available for ${this.name}.`);
+        }
     }
 }
 
