@@ -37,6 +37,24 @@ class Section {
         return this.books.filter(book => book.isAvailable).length;
     }
 
+    listBooks() {
+        console.log(`Books in section "${this.name}":`);
+        
+        if (this.books.length === 0) {
+            console.log("No books available.");
+            return;
+        }
+    
+        this.books.forEach(book => {
+            console.log(`${book.getDetails()} (${book.isAvailable ? 'Available' : 'Unavailable'})`);
+        });
+    }
+
+    calculateTotalBooksAvailable(){
+        return this.getAvailableBooks();
+    }
+    
+
 
 }
 
@@ -49,7 +67,7 @@ class Patron {
     }
 
     borrowBook(book) {
-        if (book.isAvailable) {
+        if (book._isAvailable) {
             book._isAvailable = false; 
             this.borrowedBooks.push(book);
             console.log(`${this.name} borrowed "${book.title}".`);
