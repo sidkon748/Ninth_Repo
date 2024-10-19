@@ -1,6 +1,7 @@
 //Task 1
 //Create a Book Class
 class Book {
+    // Book class constructors with title, author, and ISBN properties
     constructor(title, author, ISBN) {
         this.title = title;
         this.author = author;
@@ -27,7 +28,8 @@ class Book {
 //Task 2
 //Create a Section Class
 class Section {
-    constructor(name, ) {
+    // Section class constructors with name property and books array
+    constructor(name, books) {
         this.name = name;
         this.books = []; 
     }
@@ -50,12 +52,12 @@ class Section {
             return;
         }
     
-        this.books.forEach(book => {
+        this.book.forEach(book => {
             console.log(`${book.getDetails()} (${book.isAvailable ? 'Available' : 'Unavailable'})`);
         });
     } 
     calculateTotalBooksAvailable(book) {
-        return this.getAvailableBooks();
+        return this.getAvailableBook();
     }
 }
 
@@ -78,6 +80,7 @@ class Patron {
     }
 
     returnBook(book) {
+        // if else statement for hasBook boolean determining whether someone borrowed book
         const hasBook = this.borrowedBooks.includes(book);
         if (hasBook) {
             book.isAvailable = true;
@@ -125,7 +128,7 @@ science.addBook(book5);
 
 // Create patrons
 const regularPatron = new Patron("James Dove");
-const vipPatron = new VIPPatron("Jane Donner", true);
+const vipPatron = new VIPPatron("Jane Donner");
 
 // Regular patron tries to borrow a book
 regularPatron.borrowBook(book1);
@@ -140,6 +143,7 @@ regularPatron.returnBook(book1);
 
 // List books and availability
 fiction.listBooks();
+science.listBooks();
 
 // Calculate total available books in each section
 console.log(`Total available books in Fiction: ${fiction.getAvailableBooks()}`);
